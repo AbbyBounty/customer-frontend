@@ -38,13 +38,13 @@ export class LoginComponent implements OnInit {
       else
         {
             sessionStorage['login_status'] = '1';
-            localStorage.setItem('firstname', result['u_first_name']);
-             localStorage.setItem('vehicle', JSON.stringify(result));
-            localStorage.setItem('id', result['u_id']);
-            localStorage.setItem('flag','true');
-            console.log(localStorage.getItem('id'))
+            sessionStorage.setItem('firstname', result['u_first_name']);
+            sessionStorage.setItem('vehicle', JSON.stringify(result));
+            sessionStorage.setItem('id', result['u_id']);
+            sessionStorage.setItem('flag','true');
+            console.log(sessionStorage.getItem('id'))
 
-          const vehicle = JSON.parse(localStorage.getItem('vehicle'));
+          const vehicle = JSON.parse(sessionStorage.getItem('vehicle'));
 
           console.log(vehicle.u_vehicles)
 

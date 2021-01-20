@@ -16,10 +16,10 @@ export class VehicleService {
 
 
   getVehicles(){
-    const userid=localStorage.getItem('id')
+    const userid=sessionStorage.getItem('id')
 
 
-    return this.httpClient.get(this.url)
+    return this.httpClient.get('http://localhost:8080/user/vehiclesByUserid/'+userid)
     
   }
 

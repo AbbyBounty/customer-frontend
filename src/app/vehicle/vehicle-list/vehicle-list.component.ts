@@ -10,11 +10,12 @@ import { VehicleService } from 'app/vehicle.service';
 })
 export class VehicleListComponent implements OnInit {
 
-   vehicle:any = JSON.parse(localStorage.getItem('vehicle'));
+   vehicle:any = JSON.parse(sessionStorage.getItem('vehicle'));
+
 
  
 
-vehicals=[]
+vehicals:any=[]
 
   // vehicals=localStorage.getItem('u_vehicles')
 
@@ -28,35 +29,36 @@ constructor(private router: Router, private vehicleService:VehicleService ) { }
 
 ngOnInit(): void {
   this.loadVehicles()
-  console.log(this.vehicle)
+  console.log(  sessionStorage.getItem('u_id'))
+
   
 }
-
-
-
-loadVehicles(){
-
-  this.vehicals=this.vehicle.u_vehicles
-
-}
-
 
 
 
 // loadVehicles(){
 
-//  this.vehicleService.getVehicles().subscribe((res)=>{
+//   this.vehicals=this.vehicle.u_vehicles
+
+// }
+
+
+
+
+loadVehicles(){
+
+ this.vehicleService.getVehicles().subscribe(res=>{
       
 
     
-//         //  this.vehicals=res
-//         //  console.warn(res)
-//         //  console.log(res)
+           this.vehicals=res
+          console.warn(res)
+        //  console.log(res)
 
       
-//     })
+    })
   
-// }
+}
 
 
 onEdit(vehicle)

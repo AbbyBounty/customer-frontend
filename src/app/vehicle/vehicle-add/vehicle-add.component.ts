@@ -83,7 +83,7 @@ this.id=id
             const vehicle = JSON.parse(localStorage.getItem('vehicle'));
             console.log(vehicle.u_vehicles)
             console.log(JSON.stringify(vehicle))
-            localStorage.setItem('vehicle',JSON.stringify(vehicle))
+            // localStorage.setItem('vehicle',JSON.stringify(vehicle.u_vehicles))
             // console.log(localStorage.getItem('vehicle'))
 
             // localStorage.setItem('vehicle',)
