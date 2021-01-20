@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { VehicleService } from 'app/vehicle.service';
@@ -25,11 +26,11 @@ vehicals:any=[]
   //   // {"Vehicle_Name":"Apache","Vehicle_Company":"TVS", "Vehicle_Model":"Apache180", "Vehicle_Number":"20LH"},
 
   //  ]
-constructor(private router: Router, private vehicleService:VehicleService ) { }
+constructor(private router: Router, private vehicleService:VehicleService,private toastr: ToastrService ) { }
 
 ngOnInit(): void {
   this.loadVehicles()
-  console.log(  sessionStorage.getItem('u_id'))
+  console.log(  sessionStorage.getItem('id'))
 
   
 }
@@ -52,7 +53,7 @@ loadVehicles(){
 
     
            this.vehicals=res
-          console.warn(res)
+          // console.warn(res)
         //  console.log(res)
 
       
@@ -75,9 +76,23 @@ this.router.navigate(['/vehicle-add'])
 
 
 onDelete(vehicle, index) {
-  const result = confirm(`Are you sure you want to delete product: ${vehicle['v_company_name']}?`)
+  const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_company_name']}?`)
   if (result) {
-    this.vehicle.splice(index, 1)
+    
+    this.vehicleService.deleteVehicle(vehicle['v_id']).subscribe(res=>{
+      this.toastr.error(' deleted succesfully ','vehicle',{
+        positionClass:'toast-top-left',
+        closeButton:true,
+        progressAnimation:'decreasing',
+        titleClass:'toast-title'
+      })
+
+      this.loadVehicles()
+ 
+
+})
+
+
   }
 }
 

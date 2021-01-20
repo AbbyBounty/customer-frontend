@@ -37,6 +37,20 @@ export class VehicleService {
    return this.httpClient.get(this.url  + "/"+id, httpOptions)
   }
 
+
+  deleteVehicle(id) {
+    // add the token in the request header
+    const httpOptions = {
+     headers: new HttpHeaders({
+      //  token: sessionStorage['token']
+
+     })
+   };
+  console.log(this.url+"/"+id)
+
+   return this.httpClient.delete('http://localhost:8080/user/vehicle' + "/"+id, httpOptions)
+  }
+
   updateVehicle(v_id:number,v_company_name: string, v_model: string, v_regNo: string) {
     // add the token in the request header
 
@@ -66,7 +80,7 @@ export class VehicleService {
     })
   };
 
-  const u_id=localStorage.getItem('id')
+  const u_id=sessionStorage.getItem('id')
 
   const body = {
     v_company_name: v_company_name,
@@ -76,6 +90,8 @@ export class VehicleService {
       u_id:u_id
     }
   }
+
+  console.log("userid "+u_id)
   
   return this.httpClient.post(this.url + "/create", body, httpOptions)
 }
