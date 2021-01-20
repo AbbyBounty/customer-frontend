@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { ToastrModule } from 'ngx-toastr';
 import { VehicleService } from './../../vehicle.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,7 @@ export class VehicleAddComponent implements OnInit {
   v_regNo=""
 
   id=null
-constructor(private activatedRoute: ActivatedRoute,private router: Router, private vehicleService:VehicleService) { }
+constructor(private activatedRoute: ActivatedRoute,private router: Router, private vehicleService:VehicleService,private toastr: ToastrService) { }
 
 ngOnInit(): void {
 
@@ -70,6 +71,12 @@ this.id=id
           console.log(this.vehicle['v_id']+"vhicle id update")
 
           // if (response['status'] == 'success') {
+            this.toastr.warning(' updated succesfully ','vehicle',{
+              positionClass:'toast-top-left',
+              closeButton:true,
+              progressAnimation:'decreasing',
+              titleClass:'toast-title'
+            })
          
             this.router.navigate(['/vehicle'])
           // }
@@ -87,6 +94,7 @@ this.id=id
             // console.log(localStorage.getItem('vehicle'))
 
             // localStorage.setItem('vehicle',)
+            this.toastr.success(this.v_regNo+' vehicle added succesfully ')
             this.router.navigate(['/vehicle'])
           // }
         })
