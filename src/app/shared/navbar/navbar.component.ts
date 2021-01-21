@@ -91,5 +91,12 @@ export class NavbarComponent implements OnInit{
         }
 
       }
-
+      onLogout()
+      {
+    
+        console.log("userid"+sessionStorage.getItem('id'))
+        sessionStorage.removeItem('id');
+        sessionStorage.clear();
+        this.router.navigate(['']);
+      }
 }

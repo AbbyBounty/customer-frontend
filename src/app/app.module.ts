@@ -37,7 +37,8 @@ import { RegisterComponent } from './register/register.component';
     OrderHistoryComponent,
     FeedbackComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    //LogoutComponent
   ],
   imports: [
     BrowserAnimationsModule,
