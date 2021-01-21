@@ -39,6 +39,10 @@ export class LoginComponent implements OnInit {
         {
           sessionStorage['login_status'] = '1';
             sessionStorage.setItem('firstname', result['u_first_name']);
+            sessionStorage.setItem('lastname', result['u_last_name']);
+            sessionStorage.setItem('email', result['u_email']);
+            sessionStorage.setItem('address', result['u_address']);
+            sessionStorage.setItem('mobile', result['u_mobile']);
             sessionStorage.setItem('id', result['u_id']);
             sessionStorage.setItem('flag','true');
             console.log("userid"+sessionStorage.getItem('id'))

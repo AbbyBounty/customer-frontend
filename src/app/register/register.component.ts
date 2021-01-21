@@ -36,7 +36,7 @@ export class RegisterComponent implements OnInit {
         progressAnimation:'decreasing',
         titleClass:'toast-title'
       })
-      this.router.navigate(['/login']);
+      this.router.navigate(['']);
     });
 
   }

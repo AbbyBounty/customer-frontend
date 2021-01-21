@@ -28,6 +28,9 @@ export class RegisterService {
       "u_address":userObj.u_address,
       "u_password":userObj.u_password
 
+
+    
+
      
     }
 

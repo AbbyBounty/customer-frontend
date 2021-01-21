@@ -89,10 +89,7 @@ this.id=id
           // if (response['status'] == 'success') {
           
            
-            // localStorage.setItem('vehicle',JSON.stringify(vehicle.u_vehicles))
-            // console.log(localStorage.getItem('vehicle'))
-
-            // localStorage.setItem('vehicle',)
+          
             this.toastr.success(this.v_regNo+' vehicle added succesfully ')
             this.router.navigate(['/vehicle'])
           // }
