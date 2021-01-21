@@ -302,8 +302,9 @@ input {
 
         </label>
         <p class="forgot-pass">Forgot password?</p>
-        <button (click)="onLogin()" class="btn btn-success">Login</button>
-        <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
+        <button (click)="onLogin()" class="fb-btn btn-success">Login</button>
+      <p></p>
+        <button type="button" (click)="onSignup()"  class="fb-btn btn-warning">New User ?<span>Sign Up</span></button>
       </div>
       <div class="sub-cont">
         <div class="img">
@@ -316,7 +317,7 @@ input {
             <p>If you already has an account, just sign in. We've missed you!</p>
           </div>
           <div class="img__btn">
-            <span class="m--up">Sign Up</span>
+            <span (click)="onSignup()" >Sign Up</span>
             <span class="m--in">Sign In</span>
           </div>
         </div>
@@ -334,7 +335,7 @@ input {
             <span>Password</span>
             <input type="password" />
           </label>
-          <button type="button" class="submit">Sign Up</button>
+          <button (click)="onSignup()" type="button btn" class="submit">Sign Up</button>
           <button type="button" class="fb-btn">Join with <span>facebook</span></button>
         </div>
       </div>
