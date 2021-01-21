@@ -37,16 +37,15 @@ export class LoginComponent implements OnInit {
           }
       else
         {
-            sessionStorage['login_status'] = '1';
+          sessionStorage['login_status'] = '1';
             sessionStorage.setItem('firstname', result['u_first_name']);
-            sessionStorage.setItem('vehicle', JSON.stringify(result));
             sessionStorage.setItem('id', result['u_id']);
             sessionStorage.setItem('flag','true');
-            console.log(sessionStorage.getItem('id'))
+            console.log("userid"+sessionStorage.getItem('id'))
 
-          const vehicle = JSON.parse(sessionStorage.getItem('vehicle'));
+          
 
-          console.log(vehicle.u_vehicles)
+        
 
           
           
@@ -62,7 +61,7 @@ export class LoginComponent implements OnInit {
             //   console.log('added empty cart into local storage');
             // }
            // this.emtService.navBarSwitch(true);
-           console.log(result)
+          //  console.log(result)
             this.router.navigateByUrl("dashboard");
         }
       });

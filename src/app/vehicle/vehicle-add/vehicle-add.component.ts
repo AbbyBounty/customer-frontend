@@ -87,9 +87,8 @@ this.id=id
         .insertVehicle(this.v_company_name,this.v_model,this.v_regNo)
         .subscribe(response => {
           // if (response['status'] == 'success') {
-            const vehicle = JSON.parse(localStorage.getItem('vehicle'));
-            console.log(vehicle.u_vehicles)
-            console.log(JSON.stringify(vehicle))
+          
+           
             // localStorage.setItem('vehicle',JSON.stringify(vehicle.u_vehicles))
             // console.log(localStorage.getItem('vehicle'))
 
