@@ -64,11 +64,11 @@ this.id=id
         .subscribe(response => {
          
           // console.log(response)
-          this.v_company_name=this.vehicle['v_company_name']
-          this.v_model=this.vehicle['v_model']
-          this.v_regNo=this.vehicle['v_regNo']
+          // this.v_company_name=this.vehicle['v_company_name']
+          // this.v_model=this.vehicle['v_model']
+          // this.v_regNo=this.vehicle['v_regNo']
 
-          console.log(this.vehicle['v_id']+"vhicle id update")
+          // console.log(this.vehicle['v_id']+"vhicle id update")
 
           // if (response['status'] == 'success') {
             this.toastr.warning(' updated succesfully ','vehicle',{

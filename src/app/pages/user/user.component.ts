@@ -48,7 +48,7 @@ export class UserComponent implements OnInit{
       // edit
   
       this.userService
-        .updateUser(this.user['u_first_name'], this.user['u_last_name'],this.user['u_email'],this.user['u_mobile'], this.user['u_address'])
+        .updateUser(this.user['u_first_name'], this.user['u_last_name'],this.user['u_email'],this.user['ven_mobile'], this.user['ven_address'])
         .subscribe(response => {
          
    console.log(this.user['u_first_name'])
