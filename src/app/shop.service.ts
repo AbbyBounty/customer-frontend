@@ -12,4 +12,8 @@ export class ShopService {
   getAllShops(){
     return this.httpClient.get(this.url)
   }
+
+  getServices(){
+    
+  }
 }
