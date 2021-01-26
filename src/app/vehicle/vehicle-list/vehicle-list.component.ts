@@ -38,7 +38,7 @@ export class VehicleListComponent implements OnInit {
     this.router.navigate(['/vehicle-add'], { queryParams: { id: vehicle['v_id'] } })
 
   }
-  
+       
 
   insertVehicle() {
     this.router.navigate(['/vehicle-add'])
