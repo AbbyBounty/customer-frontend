@@ -1,8 +1,9 @@
-import { ToastrService } from 'ngx-toastr';
-import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
 import { VehicleService } from 'app/vehicle.service';
-
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+//import { MechanicService } from 'app/mechanic.service'
+//import{VehicleService}from 'app/vehicle.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -10,90 +11,53 @@ import { VehicleService } from 'app/vehicle.service';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
+  vehicles: any = []
+  constructor(private router: Router, private vehicleService: VehicleService, private toastr: ToastrService) { }
 
-   vehicle:any = JSON.parse(sessionStorage.getItem('vehicle'));
-
-
- 
-
-vehicals:any=[]
-
-  // vehicals=localStorage.getItem('u_vehicles')
-
-  // vehicals:any=[
-  //   // {"Vehicle_Name":"Classic 350","Vehicle_Company":"Royal Enfield", "Vehicle_Model":"Classic", "Vehicle_Number":"16jj"},
-  //   // {"Vehicle_Name":"Pulser","Vehicle_Company":"Bajaj", "Vehicle_Model":"Pulser220", "Vehicle_Number":"15kk"},
-  //   // {"Vehicle_Name":"Apache","Vehicle_Company":"TVS", "Vehicle_Model":"Apache180", "Vehicle_Number":"20LH"},
-
-  //  ]
-constructor(private router: Router, private vehicleService:VehicleService,private toastr: ToastrService ) { }
-
-ngOnInit(): void {
-  this.loadVehicles()
-  console.log(  sessionStorage.getItem('id'))
-
-  
-}
+  ngOnInit(): void {
+    this.loadVehicles()
+  }
 
 
 
-// loadVehicles(){
-
-//   this.vehicals=this.vehicle.u_vehicles
-
-// }
-
-
-
-
-loadVehicles(){
-
- this.vehicleService.getVehicles().subscribe(res=>{
-      
-
-    
-           this.vehicals=res
-          // console.warn(res)
-        //  console.log(res)
-
-      
-    })
-  
-}
-
-
-onEdit(vehicle)
-{
-   this.router.navigate(['/vehicle-add'],{queryParams:{id:vehicle['v_id']}})
-
-}
-
-addvehicle()
-{
-
-this.router.navigate(['/vehicle-add'])
-}
-
-
-onDelete(vehicle, index) {
-  const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_company_name']}?`)
-  if (result) {
-    
-    this.vehicleService.deleteVehicle(vehicle['v_id']).subscribe(res=>{
-      this.toastr.error(' deleted succesfully ','vehicle',{
-        positionClass:'toast-top-left',
-        closeButton:true,
-        progressAnimation:'decreasing',
-        titleClass:'toast-title'
+  loadVehicles() {
+    this.vehicleService
+      .getVehicles()
+      .subscribe(response => {
+        if (response['status'] == 'success') {
+          console.log(response)
+          this.vehicles = response['data']
+          console.log(this.vehicles)
+        } else {
+          console.log(response['error'])
+        }
       })
+  }
 
-      this.loadVehicles()
- 
-
-})
-
+  onEdit(vehicle) {
+    this.router.navigate(['/vehicle-add'], { queryParams: { id: vehicle['v_id'] } })
 
   }
-}
+  
 
+  insertVehicle() {
+    this.router.navigate(['/vehicle-add'])
+  }
+
+
+  onDelete(vehicle, index) {
+    const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_reg_no']}?`)
+    if (result) {
+
+      this.vehicleService.deleteVehicle(vehicle['v_id']).subscribe(res => {
+        this.toastr.error(' deleted succesfully ', 'vehicle', {
+          positionClass: 'toast-top-left',
+          closeButton: true,
+          progressAnimation: 'decreasing',
+          titleClass: 'toast-title'
+        })
+        this.loadVehicles()
+      })
+    }
+  }
 }

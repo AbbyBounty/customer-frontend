@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/co
 import { ROUTES } from '../../sidebar/sidebar.component';
 import { Router } from '@angular/router';
 import { Location} from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     moduleId: module.id,
@@ -19,7 +20,7 @@ export class NavbarComponent implements OnInit{
     public isCollapsed = true;
     @ViewChild("navbar-cmp", {static: false}) button;
 
-    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router) {
+    constructor(location:Location, private renderer : Renderer2, private element : ElementRef, private router: Router,private toastr: ToastrService) {
         this.location = location;
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
@@ -97,6 +98,13 @@ export class NavbarComponent implements OnInit{
         console.log("userid"+sessionStorage.getItem('id'))
         sessionStorage.removeItem('id');
         sessionStorage.clear();
+        
+
+        this.toastr.success('Thank You succesfully Logout','',{
+          positionClass:'toast-top-left',
+          closeButton:true,
+          })
         this.router.navigate(['']);
+        
       }
 }

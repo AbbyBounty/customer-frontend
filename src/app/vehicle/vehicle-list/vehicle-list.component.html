@@ -3,7 +3,7 @@
 <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <button (click)="addvehicle()" class="btn btn-success btn-sm float-right">Add</button>  
+        <button (click)="insertVehicle()" class="btn btn-success btn-sm float-right">Add</button>  
         <h4 class="card-title"> My Vehicles</h4>
       </div>
       <div class="card-body">
@@ -24,7 +24,7 @@
             </thead>
             <tbody>
            
-              <tr *ngFor="let vehicle of vehicals; let index=index;">
+              <tr *ngFor="let vehicle of vehicles; let index=index;">
                  
 
 

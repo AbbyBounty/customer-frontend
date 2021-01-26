@@ -9,7 +9,7 @@ import { HttpHeaders } from '@angular/common/http';
 })
 export class LoginService {
 
-  url = 'http://localhost:8080/user'
+  url = 'http://localhost:4000/user'
 
 
 
@@ -20,7 +20,14 @@ export class LoginService {
     private router: Router,
     private httpClient: HttpClient) { }
 
-
+    signin(email: string, password: string) {
+      const body = {
+         "u_email": email,
+      "u_password": password
+      }
+  console.log(this.url)
+      return this.httpClient.post(this.url + '/login', body)
+    }
 
   login(email: string, password: string) {
     const body = {

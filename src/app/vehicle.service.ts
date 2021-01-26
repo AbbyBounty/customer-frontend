@@ -5,95 +5,105 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class VehicleService {
-  httpClient:HttpClient
-  
+  httpClient: HttpClient
 
-  url=`http://localhost:8080/user/vehicle`
 
-  constructor(httpClient:HttpClient) { 
-    this.httpClient=httpClient
+  url = `http://localhost:4000/vehicle`
+
+  constructor(httpClient: HttpClient) {
+    this.httpClient = httpClient
   }
 
+  getVehicles() {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token']
+      })
+    };
 
-  getVehicles(){
-    const userid=sessionStorage.getItem('id')
+    return this.httpClient.get(this.url+"/", httpOptions)
 
-
-    return this.httpClient.get('http://localhost:8080/user/vehiclesByUserid/'+userid)
-    
   }
 
 
   getVehicleDetails(id) {
     // add the token in the request header
     const httpOptions = {
-     headers: new HttpHeaders({
-      //  token: sessionStorage['token']
+      headers: new HttpHeaders({
+        token: sessionStorage['token']
 
-     })
-   };
-  console.log(this.url+"/"+id)
+      })
+    };
 
-   return this.httpClient.get(this.url  + "/"+id, httpOptions)
+
+    return this.httpClient.get(this.url + "/details/" + id, httpOptions)
   }
 
 
+  
   deleteVehicle(id) {
     // add the token in the request header
     const httpOptions = {
-     headers: new HttpHeaders({
-      //  token: sessionStorage['token']
+      headers: new HttpHeaders({
+        token: sessionStorage['token']
 
-     })
-   };
-  console.log(this.url+"/"+id)
+      })
+    };
+    console.log(this.url + "/delete" + id)
 
-   return this.httpClient.delete('http://localhost:8080/user/vehicle' + "/"+id, httpOptions)
+    return this.httpClient.delete(this.url + "/delete" + id, httpOptions)
   }
 
-  updateVehicle(v_id:number,v_company_name: string, v_model: string, v_regNo: string) {
+
+
+  updateVehicle( v_id : number, v_company_name: string, v_model: string, v_reg_no: string) {
     // add the token in the request header
 
-    console.log(v_id+"vehicle id")
+    console.log( v_id  + " vehicle  id")
     const httpOptions = {
-     headers: new HttpHeaders({
-      //  token: sessionStorage['token']
-     })
-   };
+      headers: new HttpHeaders({
+        token: sessionStorage['token']
+      })
+    };
 
-   const body = {
-    v_id:v_id,
-    v_company_name: v_company_name,
-    v_model: v_model,
-    v_regNo: v_regNo,
-    
-   }
-   
-   return this.httpClient.put(this.url , body, httpOptions)
- }
+    // v_id       
+    // v_company_name                 
+    // v_model                        
+    // v_reg_no       
 
- insertVehicle(v_company_name: string, v_model: string, v_regNo: string) {
-   // add the token in the request header
-   const httpOptions = {
-    headers: new HttpHeaders({
-      // token: sessionStorage['token']
-    })
-  };
 
-  const u_id=sessionStorage.getItem('id')
 
-  const body = {
-    v_company_name: v_company_name,
-    v_model: v_model,
-    v_regNo: v_regNo,
-    v_user:{
-      u_id:u_id
+    const body = {
+      v_id: v_id,
+      v_company_name: v_company_name,
+      v_model: v_model,
+      v_reg_no: v_reg_no,
+
     }
+
+    return this.httpClient.put(this.url + "/" + v_id, body, httpOptions)
   }
 
-  console.log("userid "+u_id)
-  
-  return this.httpClient.post(this.url + "/create", body, httpOptions)
-}
 
+
+  insertVehicle(v_company_name: string, v_model: string, v_reg_no: string) {
+    // add the token in the request header
+    const httpOptions = {
+      headers: new HttpHeaders({
+        token: sessionStorage['token']
+      })
+    };
+    const u_id = sessionStorage.getItem('id')
+
+    const body = {
+      v_company_name: v_company_name,
+      v_model: v_company_name,
+      v_reg_no: v_company_name,
+      mech_vendor: {
+        u_id: u_id
+      }
+    }
+
+    return this.httpClient.post(this.url + "/add", body, httpOptions)
+  }
 }

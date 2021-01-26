@@ -1,104 +1,97 @@
-import { ToastrService } from 'ngx-toastr';
-import { ToastrModule } from 'ngx-toastr';
-import { VehicleService } from './../../vehicle.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { ToastrService } from 'ngx-toastr';
+import { VehicleService } from 'app/vehicle.service';
 @Component({
   selector: 'app-vehicle-add',
   templateUrl: './vehicle-add.component.html',
   styleUrls: ['./vehicle-add.component.css']
 })
 export class VehicleAddComponent implements OnInit {
+  vehicle = null
 
-  vehicle = null;
+  // v_id       
+    // v_company_name                 
+    // v_model                        
+    // v_reg_no       
+
+
+
+
+    v_company_name = " "
+    v_model = " "
+    v_reg_no = " "
+
+  id = null
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private vehicleService: VehicleService, private toastr: ToastrService) { }
+
   
-  v_company_name=""
-  v_model=""
-  v_regNo=""
-
-  id=null
-constructor(private activatedRoute: ActivatedRoute,private router: Router, private vehicleService:VehicleService,private toastr: ToastrService) { }
-
-ngOnInit(): void {
-
-  let id = this.activatedRoute.snapshot.queryParams['id']
-this.id=id
-  console.log(id+'id')
-  
-   if (id>0) {
-    // edit product
-    this.vehicleService
-      .getVehicleDetails(id)
-      .subscribe(response => {
-         if (response) {
-       
-        this.v_company_name=response['v_company_name']
-        this.v_model=response['v_model']
-        this.v_regNo=response['v_regNo']
-        // this.vehicle=response
-           const vehicles = response
-          // if (vehicles) {
-            // this.vehicle = vehicles[0]
-            // this.v_company_name = this.vehicle['v_company_name']
-            // this.v_model = this.vehicle['v_model']
-            // this.v_regNo = this.vehicle['v_regNo']
-           this.vehicle=1
-          // }
-         }
-      })
-   }
-}
 
 
-
-   onUpdate() {
-     console.log(this.vehicle +"vehicle onupdate")
-
-    if (this.vehicle>0) {
-      // edit
-     console.log(this.vehicle +"onupdate")
-
+  ngOnInit(): void {
+    const id = this.activatedRoute.snapshot.queryParams['id']
+    console.log('vehicle id= '+id)
+    if (id) {
+      // edit vehicle
       this.vehicleService
-        .updateVehicle(this.id, this.v_company_name,this.v_model,this.v_regNo)
+        .getVehicleDetails(id)
         .subscribe(response => {
-         
-          // console.log(response)
-          this.v_company_name=this.vehicle['v_company_name']
-          this.v_model=this.vehicle['v_model']
-          this.v_regNo=this.vehicle['v_regNo']
+          if (response['status'] == 'success') {
+            console.log(response)
+            const vehicles = response['data']
+            console.log(vehicles[0])
+            if (vehicles.length > 0) {
+              
+              this.v_company_name = vehicles[0]['v_company_name']
+              this.v_model = vehicles[0]['v_model']
+              this.v_reg_no = vehicles[0]['v_reg_no']
+             
+    // v_company_name                 
+    // v_model                        
+    // v_reg_no       vehicles
 
-          console.log(this.vehicle['v_id']+"vhicle id update")
+             this.vehicle=1
+            }
+          }
+        })
+    }
 
-          // if (response['status'] == 'success') {
-            this.toastr.warning(' updated succesfully ','vehicle',{
-              positionClass:'toast-top-left',
-              closeButton:true,
-              progressAnimation:'decreasing',
-              titleClass:'toast-title'
-            })
-         
+  
+  }
+
+
+
+  onUpdate() {
+    const id = this.activatedRoute.snapshot.queryParams['id']
+
+    if (this.vehicle) {
+      // edit
+      this.vehicleService
+        .updateVehicle(id, this.v_company_name, this.v_model, this.v_reg_no)
+        .subscribe(response => {
+          if (response['status'] == 'success') {
+            this.toastr.warning(' updated succesfully ','mechanic',{
+                          positionClass:'toast-top-left',
+                          closeButton:true,
+                          progressAnimation:'decreasing',
+                          titleClass:'toast-title'
+                        })
             this.router.navigate(['/vehicle'])
-          // }
+          }
         })
     } else {
       // insert
       this.vehicleService
-        .insertVehicle(this.v_company_name,this.v_model,this.v_regNo)
+        .insertVehicle(this.v_company_name, this.v_model, this.v_reg_no)
         .subscribe(response => {
-          // if (response['status'] == 'success') {
-          
-           
-            // localStorage.setItem('vehicle',JSON.stringify(vehicle.u_vehicles))
-            // console.log(localStorage.getItem('vehicle'))
+          if (response['status'] == 'success') {
+            this.toastr.success(this.v_reg_no+' Vehicle added succesfully ')
 
-            // localStorage.setItem('vehicle',)
-            this.toastr.success(this.v_regNo+' vehicle added succesfully ')
             this.router.navigate(['/vehicle'])
-          // }
+          }
         })
     }
-  
+
   }
-  
 }
