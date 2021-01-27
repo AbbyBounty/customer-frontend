@@ -1,3 +1,4 @@
+import { ShopDetailsComponent } from './../../shop-details/shop-details.component';
 import { VehicleAddComponent } from './../../vehicle/vehicle-add/vehicle-add.component';
 import { VehicleListComponent } from './../../vehicle/vehicle-list/vehicle-list.component';
 import { ShopComponent } from './../../shop/shop.component';
@@ -36,6 +37,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'register',        component: RegisterComponent },
     { path: 'shop',        component: ShopComponent },
     { path: 'vehicle',        component: VehicleListComponent },
+    { path: 'shop-details',        component: ShopDetailsComponent },
 
     { path: 'vehicle-add',        component: VehicleAddComponent }
 

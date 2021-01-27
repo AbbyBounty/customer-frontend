@@ -23,6 +23,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { ShopDetailsComponent } from './shop-details/shop-details.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { RegisterComponent } from './register/register.component';
     FeedbackComponent,
     LoginComponent,
     RegisterComponent,
+    ShopDetailsComponent,
     //LogoutComponent
   ],
   imports: [
