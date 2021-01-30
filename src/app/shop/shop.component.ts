@@ -22,10 +22,10 @@ export class ShopComponent implements OnInit {
   constructor(private router: Router, private shopService: ShopService) { }
 
   ngOnInit(): void {
-    this.loadProducts()
+    this.loadShops()
   }
 
-  loadProducts() {
+  loadShops() {
     this.shopService
       .getShops()
       .subscribe(response => {
@@ -37,6 +37,7 @@ export class ShopComponent implements OnInit {
   }
 
   viewShop(shops) {
+    sessionStorage.setItem("shop",shops['ven_id'])
     this.router.navigate(['/shop-details'], { queryParams: { id: shops['ven_id'] } })
 
   }

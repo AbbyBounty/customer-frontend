@@ -1,3 +1,4 @@
+import { ShopComponent } from './shop/shop.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './login/login.component';
 import { Routes } from '@angular/router';
