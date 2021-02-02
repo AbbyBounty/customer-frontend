@@ -14,7 +14,7 @@ export const ROUTES: RouteInfo[] = [
     { path: '/offer',         title: 'offer',             icon:'nc-tag-content',    class: '' },
 
 
-    { path: '/vehicle',         title: 'my vehicles',             icon:'nc-settings',    class: '' },
+    { path: '/vehicle',         title: 'my vehicles',             icon:'nc-ambulance',    class: '' },
 
     { path: '/icons',         title: 'Icons',             icon:'nc-diamond',    class: '' },
     { path: '/maps',          title: 'Maps',              icon:'nc-pin-3',      class: '' },

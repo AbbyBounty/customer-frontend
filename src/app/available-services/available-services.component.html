@@ -1,0 +1,100 @@
+<div class="col-md-8" style="display: inline-block;">
+    <div class="card">
+        <div class="card-header">
+            <h6> <b>Selected vehicle: {{selectedVehicle}} </b></h6>
+        </div>
+        <div class="card-body">
+
+
+            <form [formGroup]="selectedServices" (ngSubmit)="submit()">
+
+                <table class="form-group table">
+                    <thead>
+                        <th scope="col">Sr.No</th>
+                        <th scope="col">Service Name</th>
+                        <th scope="col">Price</th>
+                        <th></th>
+                    </thead>
+
+                    <label for="website"></label>
+
+                    <tbody>
+
+
+                        <tr *ngFor="let web of services; let index=index">
+
+                            <td> {{index+1}}</td>
+                            <td> {{web.stv_name}}</td>
+                            <td> {{web.stv_price}}</td>
+                            <td>
+                                <input type="checkbox" [value]="web.stv_name" (change)="onCheckboxChange($event)" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button class="btn btn-danger" routerLink='shop-details'>Cancle</button>
+                            </td>
+
+                            <td> <button class="btn btn-warning" type="submit"
+                                    (click)="addToCart(service,selectedVehicle)"
+                                    [disabled]="!selectedServices.valid">Add to cart
+                                </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+
+            </form>
+        </div>
+
+        <div class="card-footer">
+
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4" style="display: inline-block;">
+    <div class="card">
+        <div class="header">
+            <h3>Cart</h3>
+        </div>
+        <div class="body">
+            <table class="table">
+                <thead>
+                    <th>Vehicle</th>
+                    <th>Services</th>
+                    <th>Shop Name</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{selectedVehicle}} </td>
+                        <td>{{serviceTaken.website}}
+
+                        </td>
+                        <td>{{shop}}</td>
+                    </tr>
+
+
+
+
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                       
+                        <td>
+                            <button class="btn btn-success" (click)="addOrder()" >Order Now</button>
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+        <div class="footer"></div>
+    </div>
+</div>

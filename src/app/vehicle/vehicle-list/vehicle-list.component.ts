@@ -1,5 +1,9 @@
-import { Router } from '@angular/router';
+import { VehicleService } from 'app/vehicle.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+//import { MechanicService } from 'app/mechanic.service'
+//import{VehicleService}from 'app/vehicle.service'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-vehicle-list',
@@ -7,28 +11,53 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./vehicle-list.component.css']
 })
 export class VehicleListComponent implements OnInit {
-  vehicals=[
-    {"Vehicle_Name":"Classic 350","Vehicle_Company":"Royal Enfield", "Vehicle_Model":"Classic", "Vehicle_Number":"16jj"},
-    {"Vehicle_Name":"Pulser","Vehicle_Company":"Bajaj", "Vehicle_Model":"Pulser220", "Vehicle_Number":"15kk"},
-    {"Vehicle_Name":"Apache","Vehicle_Company":"TVS", "Vehicle_Model":"Apache180", "Vehicle_Number":"20LH"},
+  vehicles: any = []
+  constructor(private router: Router, private vehicleService: VehicleService, private toastr: ToastrService) { }
 
-   ]
-constructor(private router: Router) { }
-
-ngOnInit(): void {
-}
+  ngOnInit(): void {
+    this.loadVehicles()
+  }
 
 
-onEdit(vehicle)
-{
-   this.router.navigate(['/vehicle-add'],{queryParams:{id:vehicle['Vehicle_Number']}})
 
-}
+  loadVehicles() {
+    this.vehicleService
+      .getVehicles()
+      .subscribe(response => {
+        if (response['status'] == 'success') {
+          console.log(response)
+          this.vehicles = response['data']
+          console.log(this.vehicles)
+        } else {
+          console.log(response['error'])
+        }
+      })
+  }
 
-addvehicle()
-{
+  onEdit(vehicle) {
+    this.router.navigate(['/vehicle-add'], { queryParams: { id: vehicle['v_id'] } })
 
-this.router.navigate(['/vehicle-add'])
-}
+  }
+       
 
+  insertVehicle() {
+    this.router.navigate(['/vehicle-add'])
+  }
+
+
+  onDelete(vehicle, index) {
+    const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_reg_no']}?`)
+    if (result) {
+
+      this.vehicleService.deleteVehicle(vehicle['v_id']).subscribe(res => {
+        this.toastr.error(' deleted succesfully ', 'vehicle', {
+          positionClass: 'toast-top-left',
+          closeButton: true,
+          progressAnimation: 'decreasing',
+          titleClass: 'toast-title'
+        })
+        this.loadVehicles()
+      })
+    }
+  }
 }

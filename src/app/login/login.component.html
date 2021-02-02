@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -293,14 +293,16 @@ input {
         <h2>Welcome back,</h2>
         <label>
           <span>Email</span>
-          <input type="email" />
+                 <input [(ngModel)]="email" type="email" class="form-control" value="Admin">
+
         </label>
         <label>
           <span>Password</span>
-          <input type="password" />
+                  <input [(ngModel)]="password" type="password" class="form-control" value="Admin">
+
         </label>
         <p class="forgot-pass">Forgot password?</p>
-        <button type="button" class="submit">Sign In</button>
+        <button (click)="onLogin()" class="btn btn-success">Login</button>
         <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
       </div>
       <div class="sub-cont">
@@ -347,4 +349,53 @@ input {
     </script> 
     
 </body>
-</html>
+</html> 
+
+
+
+<!-- <div class="row">
+  <div class="col-md-4"></div>
+  <div class="col-md-4">
+    <div class="form">
+      <div class="form-group">
+        <label for="">Email</label>
+        <input [(ngModel)]="email" type="email" class="form-control">
+      </div>
+      <div class="form-group">
+        <label for="">Password</label>
+        <input [(ngModel)]="password" type="password" class="form-control">
+      </div>
+      <div class="form-group">
+        <button (click)="onLogin()" class="btn btn-success">Login</button>
+        <a routerLink="/signup" class="btn btn-warning float-right">Signup</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4"></div>
+</div> -->
+
+
+
+<!-- <div>
+  <h1 style="text-align: center;">Login</h1>
+  
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="">Email</label>
+        <input [(ngModel)]="email" type="email" class="form-control" value="Admin">
+      </div>
+      <div class="form-group">
+        <label for="">Password</label>
+        <input [(ngModel)]="password" type="password" class="form-control" value="Admin">
+      </div>
+      <div class="form-group">
+          <button (click)="onLogin()" class="btn btn-success">Login</button>
+          <button (click)="onCancel()" class="btn btn-danger" style="margin-left: 10px;">Cancel</button>
+          <button (click)="onSignup()"  class="btn btn-warning pull-right">Signup</button>
+         
+      </div>
+    </div>
+  </div>
+  </div> -->

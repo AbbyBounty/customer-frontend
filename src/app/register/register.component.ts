@@ -1,3 +1,5 @@
+import { LoginService } from './../login.service';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  user = {
+    "name": '',
+    "birth": '',
+    "email": '',
+    "mobile":'',
+    "password": '',
+    "address": ''
+  }
+
+  
+  constructor(private router: Router,private service:LoginService) { }
 
   ngOnInit(): void {
   }
 
+  onSignup(){
+    let observableResult = this.service.addUser(this.user);
+    observableResult.subscribe((result: any) => {
+      this.router.navigate(['']);
+    });
+
+  }
+  onCancel(){
+    this.router.navigate(['']);
+  }
 }

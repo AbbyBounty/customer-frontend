@@ -1,0 +1,193 @@
+
+<app-offer></app-offer>
+<div class="row">
+    <ng-container *ngFor="let shop of shops;">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header ">
+                    <img [src]='shop.image' style="width: 200px; height: 200px;" alt="">
+                    <h1 class="text-black-100">
+                        {{shop['name']}}
+
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <h6>Description</h6>
+                    <p> {{shop['description']}}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    Rating :
+                    <b> {{shop['rating']}}
+                    </b>
+                    <button class="btn btn-success float-right" routerLink='/shop-detail'>Call</button>
+                </div>
+            </div>
+        </div>   
+    </ng-container>
+
+</div>
+
+<div class="col-md-8"  >
+    <div class="card">
+      <div class="card-header">
+        <h4 class="card-title text-black-100"> OUR  SERVICES</h4>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table">
+           
+            <thead class="text-danger">
+                <th scope="col">Sr.No</th>
+                <th scope="col">Service Name</th>
+                <th scope="col" >Price</th>
+<th></th>
+            </thead>
+       
+            <tbody  >
+              
+                <tr *ngFor="let service of services; let index=index"   >
+                   <td >{{index+1}}</td>
+                    <td >{{service.stv_name}}</td>
+                    <td > {{service.stv_price}}  </td>
+               <td></td>
+
+                </tr>
+
+                <tr >
+                    <td>
+
+                      <label > <b> Select Vehicle  </b> </label>
+                      <select matNativeControl [(ngModel)]="selectedVehicle"  name="vehicle">
+                        
+                        <option  *ngFor="let vehicle of vehicles" [value]="vehicle.v_id" >
+                          {{vehicle['v_company_name']}}-{{vehicle['v_model']}}-{{vehicle['v_reg_No']}}
+                          
+                        </option>
+                        
+                      </select>
+                      <br> <br>
+                      <p> Selected Vehicle: {{selectedVehicle}} </p>
+                      <button (click)="addVehicle()" style="margin-left: 10px;" class="btn btn-success ">Add Vehicle</button>
+              
+                    </td>
+                    <td>
+                    
+                    </td>
+                   <td>
+                   
+                
+
+                   </td>
+                   
+                   <td>
+                    <button  style="margin-left: 10px;" (click)="addToCart(service,selectedVehicle)"  class="btn btn-warning ">Book Now</button>
+                    </td>
+                </tr>
+               
+            </tbody>
+          
+          </table>
+        </div>
+      </div>
+      <div class="card-footer">
+       
+      </div>
+    
+    </div>
+  </div>
+
+
+
+
+<!-- <form >
+  <table class="table">
+           
+  <thead class="text-danger">
+      <th scope="col">Sr.No</th>
+      <th scope="col">Service Name</th>
+      <th scope="col">Price</th>
+      <th scope="col" style="text-align: center;">Action</th>
+
+  </thead>
+
+  <tbody  >
+    
+      <tr *ngFor="let service of services; let index=index"   name="service.stv_name" >
+         <td  >{{index+1}}</td>
+          <td >{{service.stv_name}}</td>
+          <td > {{service.stv_price}}  </td>
+          <td class="text-center">
+              <input type="checkbox"  class="btn btn-warning btn-sm" [(ngModel)]="service.stv_id"[ngModelOptions]="{standalone: true}"  [value]="service.stv_id"    >
+          </td>
+          <p *ngIf="service.stv_id?true:false"> Selected Services:{{service.stv_name}} </p>
+
+      </tr>
+
+      <tr >
+          <td></td>
+          <td></td>
+          <td >
+
+          
+              <label > <b> Select Vehicle  </b> </label>
+              <select matNativeControl [(ngModel)]="selectedVehicle"  name="vehicle">
+                
+                <option  *ngFor="let vehicle of vehicles" [value]="vehicle.v_id" >
+                  {{vehicle['v_company_name']}}-{{vehicle['v_model']}}-{{vehicle['v_reg_No']}}
+                  
+                </option>
+                
+              </select>
+           <br> <br>
+            <p> Selected Vehicle: {{selectedVehicle}} </p>
+            <button (click)="addVehicle()" style="margin-left: 10px;" class="btn btn-success ">Add Vehicle</button>
+    
+          
+            
+          </td>
+         
+         <td>
+          <button  style="margin-left: 10px;" (click)="addToCart(service,selectedVehicle)" class="btn btn-warning ">Add to Cart</button>
+          </td>
+      </tr>
+     
+  </tbody>
+
+</table> 
+
+</form>
+
+
+
+<div class="container">
+      
+  <form [formGroup]="form" (ngSubmit)="submit()">
+          
+      <div class="form-group">
+          <label for="website">Website:</label>
+          <div *ngFor="let web of services">
+            <label>
+              <input type="checkbox" [value]="web.stv_id" (change)="onCheckboxChange($event)" />
+              {{web.stv_id}}
+              {{web.stv_name}}
+              {{web.stv_price}}
+            </label>
+          </div>
+      </div>
+      <label > <b> Select Vehicle  </b> </label>
+              <select matNativeControl [(ngModel)]="vehicle"  name="vehicle">
+                
+                <option  *ngFor="let vehicle of vehicles" [value]="vehicle.v_id" >
+                  {{vehicle['v_company_name']}}-{{vehicle['v_model']}}-{{vehicle['v_reg_No']}}
+                  
+                </option>
+                
+              </select>
+           <br> <br>
+            <p> Selected Vehicle: {{vehicle}} </p>
+            <button (click)="addVehicle()" style="margin-left: 10px;" class="btn btn-success ">Add Vehicle</button>
+    
+      <button class="btn btn-primary" type="submit" (click)="addToCart(service,selectedVehicle)" [disabled]="!form.valid">Submit</button>
+  </form>
+</div> -->
