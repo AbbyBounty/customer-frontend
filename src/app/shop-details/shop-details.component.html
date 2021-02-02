@@ -60,7 +60,7 @@
                       <label > <b> Select Vehicle  </b> </label>
                       <select matNativeControl [(ngModel)]="selectedVehicle"  name="vehicle">
                         
-                        <option  *ngFor="let vehicle of vehicles" [value]="vehicle.v_company_name" >
+                        <option  *ngFor="let vehicle of vehicles" [value]="vehicle.v_id" >
                           {{vehicle['v_company_name']}}-{{vehicle['v_model']}}-{{vehicle['v_reg_No']}}
                           
                         </option>
