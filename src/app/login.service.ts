@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { HttpHeaders } from '@angular/common/http';
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService implements CanActivate {
 
   url = 'http://localhost:4000/user'
 
@@ -29,6 +30,21 @@ export class LoginService {
       return this.httpClient.post(this.url + '/login', body)
     }
 
+
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+      if (sessionStorage['token']) {
+        // user is already logged in
+        // launch the component
+        return true
+      }
+       // force user to login
+    this.router.navigate(['/login'])
+
+    // user has not logged in yet
+    // stop launching the component
+    return false
+  }
+  
   login(email: string, password: string) {
     const body = {
       "u_email": email,
