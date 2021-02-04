@@ -1,47 +1,9 @@
 
-<!-- <div class="container md-col-4">
-    <hr/>
-   
-
-    <h3>List of Vehicles</h3>
-
-
-    <table class="table" border="1" style="border-collapse: collapse;">
-        <thead>
-            <th scope="col">Sr.No</th>
-            <th>Vehicle Name</th>
-            <th>Vehicle Company</th>
-            <th>Vehicle Model</th>
-            <th>Vehicle Number</th>
-            
-        </thead>
-        <tbody>
-            <tr *ngFor="let vehicle of vehicals; let index=index;">
-                 
-
-
-
-                <td>{{index+1}}</td>
-                <td>{{vehicle['Vehicle_Name']}}</td>
-                <td>{{vehicle['Vehicle_Company']}}</td>
-                <td>{{vehicle['Vehicle_Model']}}</td>
-                <td>{{vehicle['Vehicle_Number']}}</td>
-                
-               
-                <td>
-                    <button (click)="onEdit(vehicle)" style="margin-left: 10px;" class="btn btn-warning btn-sm">Edit</button>
-                    <button style="margin-left: 10px;" class="btn btn-danger btn-sm">Delete</button>
-                </td>
-                
-            </tr>
-        </tbody>
-    </table>
-</div> -->
 
 <div class="col-md-12">
     <div class="card">
       <div class="card-header">
-        <button (click)="addvehicle()" class="btn btn-success btn-sm float-right">Add</button>  
+        <button (click)="insertVehicle()" class="btn btn-success btn-sm float-right">Add</button>  
         <h4 class="card-title"> My Vehicles</h4>
       </div>
       <div class="card-body">
@@ -52,7 +14,7 @@
                 Sr.No
               </th>
               
-              <th> Name</th>
+              <!-- <th> Name</th> -->
               <th> Company</th>
               <th> Model</th>
               <th> Number</th>
@@ -61,120 +23,22 @@
               </th>
             </thead>
             <tbody>
-              <!-- <tr>
-                <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-                <td class="text-right">
-                  $36,738
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                <td class="text-right">
-                  $23,789
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                <td class="text-right">
-                  $56,142
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-                <td class="text-right">
-                  $38,735
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                <td class="text-right">
-                  $63,542
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $78,615
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  Jon Porter
-                </td>
-                <td>
-                  Portugal
-                </td>
-                <td>
-                  Gloucester
-                </td>
-                <td class="text-right">
-                  $98,615
-                </td>
-              </tr> -->
-            
-              <tr *ngFor="let vehicle of vehicals; let index=index;">
+           
+              <tr *ngFor="let vehicle of vehicles; let index=index;">
                  
 
 
 
                 <td>{{index+1}}</td>
-                <td>{{vehicle['Vehicle_Name']}}</td>
-                <td>{{vehicle['Vehicle_Company']}}</td>
-                <td>{{vehicle['Vehicle_Model']}}</td>
-                <td>{{vehicle['Vehicle_Number']}}</td>
+                <td>{{vehicle['v_company_name']}}</td>
+                <td>{{vehicle['v_model']}}</td>
+                <td>{{vehicle['v_reg_No']}}</td>
+               <!-- <td>{{vehicle.v_reg_no}}</td> -->
                 
                
                 <td>
                     <button (click)="onEdit(vehicle)" style="margin-left: 10px;" class="btn btn-warning btn-sm">Edit</button>
-                    <button style="margin-left: 10px;" class="btn btn-danger btn-sm">Delete</button>
+                    <button (click)="onDelete(vehicle, index)" style="margin-left: 10px;" class="btn btn-danger btn-sm">Delete</button>
                 </td>
                 
             </tr>

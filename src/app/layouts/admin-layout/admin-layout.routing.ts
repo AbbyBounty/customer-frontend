@@ -1,3 +1,5 @@
+import { AvailableServicesComponent } from './../../available-services/available-services.component';
+import { ShopDetailsComponent } from './../../shop-details/shop-details.component';
 import { VehicleAddComponent } from './../../vehicle/vehicle-add/vehicle-add.component';
 import { VehicleListComponent } from './../../vehicle/vehicle-list/vehicle-list.component';
 import { ShopComponent } from './../../shop/shop.component';
@@ -19,6 +21,7 @@ import { NotificationsComponent } from '../../pages/notifications/notifications.
 import { UpgradeComponent } from '../../pages/upgrade/upgrade.component';
 
 export const AdminLayoutRoutes: Routes = [
+    { path: '',        component: DashboardComponent },
     { path: 'dashboard',      component: DashboardComponent },
     { path: 'user',           component: UserComponent },
     { path: 'table',          component: TableComponent },
@@ -35,7 +38,10 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'register',        component: RegisterComponent },
     { path: 'shop',        component: ShopComponent },
     { path: 'vehicle',        component: VehicleListComponent },
-    { path: 'login',        component: LoginComponent },
+    { path: 'shop-details',        component: ShopDetailsComponent },
+    { path: 'available-services',        component:AvailableServicesComponent },
+    { path: 'register',        component:RegisterComponent },
+
     { path: 'vehicle-add',        component: VehicleAddComponent }
 
 ];
