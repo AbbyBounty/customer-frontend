@@ -21,7 +21,7 @@ export class VehicleAddComponent implements OnInit {
 
     v_company_name = " "
     v_model = " "
-    v_reg_no = " "
+    v_reg_No = " "
 
   id = null
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private vehicleService: VehicleService, private toastr: ToastrService) { }
@@ -45,7 +45,7 @@ export class VehicleAddComponent implements OnInit {
               
               this.v_company_name = vehicles[0]['v_company_name']
               this.v_model = vehicles[0]['v_model']
-              this.v_reg_no = vehicles[0]['v_reg_no']
+              this.v_reg_No = vehicles[0]['v_reg_No']
              
     // v_company_name                 
     // v_model                        
@@ -68,7 +68,7 @@ export class VehicleAddComponent implements OnInit {
     if (this.vehicle) {
       // edit
       this.vehicleService
-        .updateVehicle(id, this.v_company_name, this.v_model, this.v_reg_no)
+        .updateVehicle(id, this.v_company_name, this.v_model, this.v_reg_No)
         .subscribe(response => {
           if (response['status'] == 'success') {
             this.toastr.warning(' updated succesfully ','mechanic',{
@@ -83,10 +83,10 @@ export class VehicleAddComponent implements OnInit {
     } else {
       // insert
       this.vehicleService
-        .insertVehicle(this.v_company_name, this.v_model, this.v_reg_no)
+        .insertVehicle(this.v_company_name, this.v_model, this.v_reg_No)
         .subscribe(response => {
           if (response['status'] == 'success') {
-            this.toastr.success(this.v_reg_no+' Vehicle added succesfully ')
+            this.toastr.success(this.v_reg_No+' Vehicle added succesfully ')
 
             this.router.navigate(['/vehicle'])
           }

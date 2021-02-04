@@ -5,20 +5,22 @@ import { Routes } from '@angular/router';
 
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { RegisterComponent } from './register/register.component';
+import { LoginService } from './login.service';
 
 export const AppRoutes: Routes = [
-  {
-    path: 'dashboard',
+  // {
+  //   path: 'dashboard',
    
-    pathMatch: 'full',
-    component:AdminLayoutComponent,
-    children: [
-      {
-        path: '',
-        loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
-        // loadChildren: './login/LoginComponent'
-      }]
-  },
+  //   pathMatch: 'full',
+  //   component:AdminLayoutComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
+  //       // loadChildren: './login/LoginComponent'
+  //     }],
+  //     canActivate:[LoginService]
+  // },
   // {
   //   path: 'login',
   //   redirectTo: '',
@@ -27,7 +29,8 @@ export const AppRoutes: Routes = [
 
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
+
     
   },
   {
@@ -48,10 +51,15 @@ export const AppRoutes: Routes = [
         path: '',
         loadChildren: './layouts/admin-layout/admin-layout.module#AdminLayoutModule'
        
-      }]
+      }],
+   
+    canActivate:[LoginService]
+
   },
   {
     path: '**',
-    redirectTo: 'login'
+    redirectTo: 'login',
+    canActivate:[LoginService]
+
   }
 ]
