@@ -46,7 +46,7 @@ export class VehicleListComponent implements OnInit {
 
 
   onDelete(vehicle, index) {
-    const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_reg_no']}?`)
+    const result = confirm(`Are you sure you want to delete vehicle: ${vehicle['v_reg_No']}?`)
     if (result) {
 
       this.vehicleService.deleteVehicle(vehicle['v_id']).subscribe(res => {

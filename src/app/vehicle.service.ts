@@ -49,14 +49,14 @@ export class VehicleService {
 
       })
     };
-    console.log(this.url + "/delete" + id)
+    console.log(this.url + "/delete/" + id)
 
-    return this.httpClient.delete(this.url + "/delete" + id, httpOptions)
+    return this.httpClient.delete(this.url + "/delete/" + id, httpOptions)
   }
 
 
 
-  updateVehicle( v_id : number, v_company_name: string, v_model: string, v_reg_no: string) {
+  updateVehicle( v_id : number, v_company_name: string, v_model: string, v_reg_No: string) {
     // add the token in the request header
 
     console.log( v_id  + " vehicle  id")
@@ -77,16 +77,16 @@ export class VehicleService {
       v_id: v_id,
       v_company_name: v_company_name,
       v_model: v_model,
-      v_reg_no: v_reg_no,
+      v_reg_No:v_reg_No
 
     }
 
-    return this.httpClient.put(this.url + "/" + v_id, body, httpOptions)
+    return this.httpClient.put(this.url + "/create/" + v_id, body, httpOptions)
   }
 
 
 
-  insertVehicle(v_company_name: string, v_model: string, v_reg_no: string) {
+  insertVehicle(v_company_name: string, v_model: string, v_reg_No: string) {
     // add the token in the request header
     const httpOptions = {
       headers: new HttpHeaders({
@@ -97,9 +97,9 @@ export class VehicleService {
 
     const body = {
       v_company_name: v_company_name,
-      v_model: v_company_name,
-      v_reg_no: v_company_name,
-      mech_vendor: {
+      v_model: v_model,
+      v_reg_No: v_reg_No,
+      vehicle_user: {
         u_id: u_id
       }
     }
