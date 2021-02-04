@@ -56,14 +56,15 @@ export class LoginService implements CanActivate {
     return this.httpClient.post(this.url+"/auth" , body)
   }
 
-  addUser(userObj){    
+  addUser(userObj){  
+    console.log(`adduser`+userObj)  
     let data = {
-      "u_first_name": userObj.name,
-      "u_last_name": userObj.name,
-      "u_email": userObj.email,
-      "u_address": userObj.address,
-      "u_mobile": userObj.mobile,
-      "u_password": userObj.password
+      "u_first_name": userObj.u_first_name,
+      "u_last_name": userObj.u_last_name,
+      "u_email": userObj.u_email,
+      "u_address": userObj.u_address,
+      "u_mobile": userObj.u_mobile,
+      "u_password": userObj.u_password
     }
     return  this.httpClient.post(this.url + "/register",data);
   }

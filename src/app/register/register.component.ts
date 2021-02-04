@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   }
 
   onSignup() {
+    console.log(this.user)
     let observableResult = this.service.addUser(this.user);
     observableResult.subscribe((result: any) => {
 
