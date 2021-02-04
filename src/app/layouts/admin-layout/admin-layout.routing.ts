@@ -40,6 +40,7 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'vehicle',        component: VehicleListComponent },
     { path: 'shop-details',        component: ShopDetailsComponent },
     { path: 'available-services',        component:AvailableServicesComponent },
+    { path: 'register',        component:RegisterComponent },
 
     { path: 'vehicle-add',        component: VehicleAddComponent }
 

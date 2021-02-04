@@ -25,7 +25,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { ShopDetailsComponent } from './shop-details/shop-details.component';
 import { CommonModule } from '@angular/common';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { AvailableServicesComponent } from './available-services/available-services.component';
 import { OrderComponent } from './order/order.component';
 
@@ -44,7 +43,7 @@ import { OrderComponent } from './order/order.component';
     RegisterComponent,
     ShopDetailsComponent,
     AvailableServicesComponent,
-    OrderComponent,
+    OrderComponent
     //LogoutComponent
   ],
   imports: [

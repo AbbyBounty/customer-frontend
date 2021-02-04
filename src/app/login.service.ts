@@ -28,26 +28,19 @@ export class LoginService {
   console.log(this.url)
       return this.httpClient.post(this.url + '/login', body)
     }
+  /***************************** */
 
-  login(email: string, password: string) {
-    const body = {
-      "u_email": email,
-      "u_password": password
-    }
-
-    return this.httpClient.post(this.url+"/auth" , body)
-  }
-
+  /************************ */
   addUser(userObj){    
-    let data={
-      "name":userObj.name,
-      "email":userObj.email,
-      "address":userObj.address,
-      "mobile":userObj.mobile,
-      "password":userObj.password,
-      "birth":userObj.birth
+    let data = {
+      "u_first_name": userObj.name,
+      "u_last_name": userObj.name,
+      "u_email": userObj.email,
+      "u_address": userObj.address,
+      "u_mobile": userObj.mobile,
+      "u_password": userObj.password
     }
-    return  this.httpClient.post(this.url + "/addMember",data);
+    return  this.httpClient.post(this.url + "/register",data);
   }
  
 }
